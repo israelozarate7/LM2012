@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="iso-8859-1" />
+  <meta name="viewport" content="width=device-width" />
+  <title>iortizdezarate.com - LM2012</title>
+  <link rel="stylesheet" href="css/foundation.css" />
+  <link rel="stylesheet" href="css/presentation.css" />
+  <script src="js/vendor/custom.modernizr.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/iFeed.js"></script>
+
+<script type="text/javascript" >
+    $(document).ready(function () {  
+        $('#divRss').iFeed({
+            FeedUrl: 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.atom',
+            MaxCount: 20
+        });
+    });    
+
+</script>
+  
+  
+</head>
+<body>
+<div class="fixed">
+<nav class="top-bar">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="http://iortizdezarate.com/LM/">Proyecto Lenguaje de Marcas 2012 </a></h1>
+    </li>
+  </ul>
+</nav>
+
+</div>
+
+   <div class="row">
+		<div class="large-6 columns">
+    	      	<h2>Terremotos</h2>
+    	</div>
+    	<div class="large-6 columns">
+    		<blockquote>
+  			<p>Listado de los terremotos que se han producido en todo el mundo en las últimas 24h.
+  			<cite>Datos obtenidos de <a href="http://earthquake.usgs.gov/">USGS</a></cite></p>
+			</blockquote>			
+    	</div>
+
+      <hr />
+    </div>
+
+	<div class="row">
+		<div class= "large-12 columns">
+				<div class="rssDiv">
+					<div id="divRss"></div>
+				</div>
+		</div>
+	</div>
+	<div id="copyright">
+    <div class="row">
+      <div class="four columns">
+        <!--<p>www.iortizdezarate.com &copy; 2013.</p>-->
+      </div>
+      <div class="eight columns">
+        <ul class="inline-list right">
+          <!--<li><a href="#" data-reveal-id="myModal" class="radi">Home</a></li>
+          <li><a href="download.php">Download</a></li>
+          <li><a href="docs">Documentation</a></li>
+          <li><a href="about.php">About</a></li>
+          <li><a href="http://feeds.feedburner.com/zurb/blog">Subscribe to the ZURBlog</a></li>-->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+  '.js><\/script>')
+  </script>
+  
+  <script src="js/foundation.min.js"></script> 
+  <script src="js/foundation/foundation.js"></script> 
+  <script src="js/foundation/foundation.alerts.js"></script> 
+  <script src="js/foundation/foundation.clearing.js"></script>
+  <script src="js/foundation/foundation.cookie.js"></script> 
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/foundation/foundation.forms.js"></script>
+  <script src="js/foundation/foundation.joyride.js"></script> 
+  <script src="js/foundation/foundation.magellan.js"></script> 
+  <script src="js/foundation/foundation.orbit.js"></script> 
+  <script src="js/foundation/foundation.placeholder.js"></script> 
+  <script src="js/foundation/foundation.reveal.js"></script> 
+  <script src="js/foundation/foundation.section.js"></script> 
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  <script src="js/foundation/foundation.topbar.js"></script>
+  
+ 
+  
+  <script>
+    $(document).foundation();
+  </script>
+</body>
+<div id="myModal" class="reveal-modal">
+  <h2>Tecnologías</h2>
+  <p class="lead">Las tecnologías que he utilizado para desarrollar el proyecto:</p>
+	<ul class="disc">
+		<li><a href="http://foundation.zurb.com/">Foundation Framework</a><br />Utilizado para montar la web.
+		</li>
+		
+		<li><a href="http://www.jquery-plugins.net/FeedEK/FeedEK.html">FeedEk jQuery RSS/ATOM Feed Plugin</a><br />Utilizado para la lectura del XML en red y construir parte del html desde javascript.</li>
+	</ul>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+</html>

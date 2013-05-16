@@ -18,7 +18,7 @@ var terremotos = new Array();
 		var r = e(this).attr("id"); 
 		var i; 
 
-		e("#" + r).empty().append('<div style="padding:3px;"><img src="loader.gif" /></div>'); 
+		/*e("#" + r).empty().append('<div style="padding:3px;"><img src="loader.gif" /></div>');*/
 		e.ajax(
 		{ 
 			url: "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=" + n.MaxCount + 
@@ -157,7 +157,7 @@ var terremotos = new Array();
 											//alert (terremotos.length);
 											//alert (terremotos[10].pais);
 
-											e("#" + r).append('<table><thead><tr><th>País</th><th>Hora</th><th>Día</th><th>Magnitud</th><th>Zona</th><th>Coordenadas</th><th>¿Lo has sentido?</th></thead><tbody>' + s + "</tbody></table>") 
+											e("#" + r).append('<table id="terremotoTable"><thead><tr><th>País</th><th>Hora</th><th>Día</th><th>Magnitud</th><th>Zona</th><th>Coordenadas</th><th>¿Lo has sentido?</th></thead><tbody>' + s + "</tbody></table>") 
 						
 										} 
 		}) 
@@ -174,4 +174,42 @@ function terremoto(tempTitulo, temp_h, mg, tempZona, coord, tempUrl)
     this.zona = tempZona
 	this.coordenadas = coord
     this.url = tempUrl
+}
+
+function saludo()
+{
+
+alert (document.getElementById("customDropdown1").value);
+}
+
+function crearTabla()
+{
+var num = document.getElementById("customDropdown1").value;
+    $(document).ready(function () 
+	{  
+        $('#divRss').iFeed({
+            FeedUrl: 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.atom',
+            MaxCount: num
+        });
+    });
+}
+
+//Función que elimina la tabla entera.
+function deleteAllRows() {
+	var Parent = document.getElementById("terremotoTable");
+	while(Parent.hasChildNodes())
+	{
+	   Parent.removeChild(Parent.firstChild);
+	}
+}
+
+//Funcion beta-crear tabla con datos de los objetos.
+function createTable() {
+    $(document).ready(function () 
+	{  
+        $('#divRss').iFeed({
+            FeedUrl: 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.atom',
+            MaxCount: 5
+        });
+    });
 }

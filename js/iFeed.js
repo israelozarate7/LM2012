@@ -3,6 +3,9 @@
 * http://jquery-plugins.net/FeedEk/FeedEk.html
 * Autor : Israel Ortiz de Zárate 
 */
+
+var terremotos = new Array();
+
 (function (e) 
 { 
 	e.fn.iFeed = function (t) 
@@ -99,7 +102,7 @@
 													
 													if (t.content.substr(0,3)=="<p>")
 													{
-														
+														var tempCoord;
 														var temp_string = t.content.substring(t.content.indexOf("Location")+17);
 														var tempUrl;
 														var posDYFI= t.content.indexOf("#dyfi\"");
@@ -114,7 +117,7 @@
 														tempUrl = t.link;
 														}
 														
-														
+																												
 														s += 
 														
 														//Coordenadas
@@ -133,11 +136,26 @@
 														
 														//¿Lo has sentido?
 														"<td><a href="+t.link +"   </a>Informa</td></tr>"
+														
+														tempUrl = t.link;
 													}
+													
 												} 
+											
+												//Cada vez que finaliza la obtención de datos por terremoto, creo el objeto de tipo 'terremoto'
+												var w = new terremoto(tempTitulo, temp_h, mg, tempZona, temp_string.substring(0,temp_string.indexOf("</dd>")), tempUrl);
+												
+												//Añado el objeto al array terremotos.
+												terremotos.push(w);
+												
+
 											}
+											
+											
 								
 											);
+											//alert (terremotos.length);
+											//alert (terremotos[10].pais);
 
 											e("#" + r).append('<table><thead><tr><th>País</th><th>Hora</th><th>Día</th><th>Magnitud</th><th>Zona</th><th>Coordenadas</th><th>¿Lo has sentido?</th></thead><tbody>' + s + "</tbody></table>") 
 						
@@ -147,4 +165,13 @@
 }
  )(jQuery)
 
-
+//Clase terremoto, se crean los objetos dentro.
+function terremoto(tempTitulo, temp_h, mg, tempZona, coord, tempUrl) 
+{
+    this.pais = tempTitulo
+    this.hora = temp_h
+    this.magnitud = mg
+    this.zona = tempZona
+	this.coordenadas = coord
+    this.url = tempUrl
+}

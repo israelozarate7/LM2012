@@ -10,7 +10,7 @@ var terremotos = new Array();
 { 
 	e.fn.iFeed = function (t) 
 	{ 
-		var n = { FeedUrl: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.atom", MaxCount: 20, ShowDesc: false, ShowPubDate: true, CharacterLimit: 0, TitleLinkTarget: "_blank" };
+		var n = { FeedUrl: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.atom", MaxCount: 50, ShowDesc: false, ShowPubDate: true, CharacterLimit: 0, TitleLinkTarget: "_blank" };
 		 
 		if (t) 
 		{ e.extend(n, t) } 
@@ -18,7 +18,7 @@ var terremotos = new Array();
 		var r = e(this).attr("id"); 
 		var i; 
 
-		/*e("#" + r).empty().append('<div style="padding:3px;"><img src="loader.gif" /></div>');*/
+		e("#" + r).empty().append('<div style="padding:3px;"><img src="img/loader.gif" /></div>');
 		e.ajax(
 		{ 
 			url: "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=" + n.MaxCount + 
@@ -57,28 +57,7 @@ var terremotos = new Array();
 												{ 
 													var mg = t.title.substr(2,4);
 													var temp_mg = t.title.substr(2,4);
-													
-													//Pintar el valor si es superior de 4.0
-													if (mg < 3)
-													{
-														temp_mg = "<td bgcolor=\"#2EFE2E\">" + temp_mg + "</td>";
-													}
-													else if (mg < 4)
-													{
-														temp_mg = "<td bgcolor=\"#C8FE2E\">" + temp_mg + "</td>";
-													}
-													else if (mg < 5)
-													{
-														temp_mg = "<td bgcolor=\"#FE9A2E\">" + temp_mg + "</td>";
-													}
-													else if (mg < 6)
-													{
-														temp_mg = "<td bgcolor=\"#FF0000\">" + temp_mg + "</td>";
-													}													
-													else
-													{
-														temp_mg = "<td>" + temp_mg + "</td>";
-													}
+
 													
 													var temp_h = t.content.substring(t.content.indexOf("Time")+13);
 													temp_h = temp_h.substr(0,temp_h.indexOf("UTC")+3);
@@ -143,7 +122,8 @@ var terremotos = new Array();
 												} 
 											
 												//Cada vez que finaliza la obtención de datos por terremoto, creo el objeto de tipo 'terremoto'
-												var w = new terremoto(tempTitulo, temp_h, mg, tempZona, temp_string.substring(0,temp_string.indexOf("</dd>")), tempUrl);
+												var fecha = i.toLocaleDateString();
+												var w = new terremoto(tempTitulo, temp_h, fecha, mg, tempZona, temp_string.substring(0,temp_string.indexOf("</dd>")), tempUrl);
 												
 												//Añado el objeto al array terremotos.
 												terremotos.push(w);
@@ -154,62 +134,12 @@ var terremotos = new Array();
 											
 								
 											);
-											//alert (terremotos.length);
-											//alert (terremotos[10].pais);
-
-											e("#" + r).append('<table id="terremotoTable"><thead><tr><th>País</th><th>Hora</th><th>Día</th><th>Magnitud</th><th>Zona</th><th>Coordenadas</th><th>¿Lo has sentido?</th></thead><tbody>' + s + "</tbody></table>") 
-						
+											createTable();
+											
 										} 
 		}) 
 	}
 }
  )(jQuery)
 
-//Clase terremoto, se crean los objetos dentro.
-function terremoto(tempTitulo, temp_h, mg, tempZona, coord, tempUrl) 
-{
-    this.pais = tempTitulo
-    this.hora = temp_h
-    this.magnitud = mg
-    this.zona = tempZona
-	this.coordenadas = coord
-    this.url = tempUrl
-}
 
-function saludo()
-{
-
-alert (document.getElementById("customDropdown1").value);
-}
-
-function crearTabla()
-{
-var num = document.getElementById("customDropdown1").value;
-    $(document).ready(function () 
-	{  
-        $('#divRss').iFeed({
-            FeedUrl: 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.atom',
-            MaxCount: num
-        });
-    });
-}
-
-//Función que elimina la tabla entera.
-function deleteAllRows() {
-	var Parent = document.getElementById("terremotoTable");
-	while(Parent.hasChildNodes())
-	{
-	   Parent.removeChild(Parent.firstChild);
-	}
-}
-
-//Funcion beta-crear tabla con datos de los objetos.
-function createTable() {
-    $(document).ready(function () 
-	{  
-        $('#divRss').iFeed({
-            FeedUrl: 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.atom',
-            MaxCount: 5
-        });
-    });
-}

@@ -66,35 +66,29 @@
       <div class="large-12 columns">
 				<form class="custom">
 				  <div class="row">
-					<div class="large-4 columns">
-					<!--<a href="#" class="button round" onclick="createTable();">Mostrar resultados</a>
+					<div class="large-8 columns">
+						<fieldset>
+						  <legend>Filtros</legend>
+						  <label for="radio1"><input name="radio1" type="radio" id="radio_tot" style="display:none;" CHECKED onChange="crearTabla();"><span class="custom radio checked"></span> Sin filtro</label>
+						  <label for="radio1"><input name="radio1" type="radio" id="radio_mg" style="display:none;"onChange="crearTabla();"><span class="custom radio"></span> Magnitud > 5</label>
+						</fieldset>
 					</div>
 					<div class="large-4 columns">
-					  <label for="radio1"><input name="radio1" type="radio" id="radio1" style="display:none;" CHECKED><span class="custom radio checked"></span> Todos</label>
-					  <label for="radio1"><input name="radio1" type="radio" id="radio1" style="display:none;"><span class="custom radio"></span> Radio Button 2</label>
-					  <label for="radio1"><input name="radio1" type="radio" id="radio1" disabled style="display:none;"><span class="custom radio"></span> Radio Button 3</label>-->
+						<fieldset>
+							<legend>Número de resultados</legend>
+							  <select id="customDropdown1" class="medium" onChange="crearTabla();">
+								<option DISABLED>Selecciona el nº de resultados</option>
+									<option value= "5">5</option>
+									<option value= "8">8</option>
+									<option value= "12">12</option>
+									<option value= "15">15</option>
+									<option value= "18">18</option>
+									<option value= "20">20</option>	
+									<option value= "25">25</option>							
+							  </select>
+						</fieldset>
 					</div>
-					<div class="large-4 columns">
-					  <label for="customDropdown1">Selecciona el nº de resultados</label>
-					  <select id="customDropdown1" class="medium" onChange="crearTabla();">
-						<option DISABLED>Selecciona el nº de resultados</option>
-							<option value= "5">5</option>
-							<option value= "8">8</option>
-							<option value= "12">12</option>
-							<option value= "15">15</option>
-							<option value= "18">18</option>
-							<option value= "20">20</option>	
-							<option value= "25">25</option>							
-					  </select>
-					</div>
-				  </div>
-		</div>
-	</div>
-	<div class="row" >
-		<div class= "large-12 columns">
-			<!--<a href="#" class="button round" onclick="deleteAllRows();" >Borrar tabla</a>
-			<a href="#" class="button round" onclick="createTable();" >Crear tabla</a>
-			<a href="#" class="button round" onclick="createTable();" >Crear tabla</a>-->
+				</div>
 		</div>
 	</div>
 	<div class="row">

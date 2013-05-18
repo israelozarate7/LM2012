@@ -65,6 +65,10 @@ function createTable() {
 			{
 				registros += "<td bgcolor=\"#FF0000\">" + terremotos[i].magnitud + "</td>";
 			}
+			else
+			{
+				registros += "<td>" + terremotos[i].magnitud + "</td>";
+			}
 			
 			registros += "<td>" + terremotos[i].zona + "</td>";
 			registros += "<td>" + terremotos[i].coordenadas + "</td>";

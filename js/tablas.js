@@ -65,7 +65,8 @@ function createTable() {
 				else if (terremotos[num - i-1].magnitud < 7)
 				{
 					registros += "<td bgcolor=\"#c91c31\">" + terremotos[num - i-1].magnitud + "</td>";
-				}			
+				}
+			
 				else
 				{
 					registros += "<td>" + terremotos[num - i-1].magnitud + "</td>";

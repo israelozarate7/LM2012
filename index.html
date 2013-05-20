@@ -10,22 +10,34 @@
   <script src="js/vendor/custom.modernizr.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  <script type="text/javascript" src="js/gmaps.js"></script>
   <script type="text/javascript" src="js/iFeed.js"></script>
   <script type="text/javascript" src="js/terremotos.js"></script>
   <script type="text/javascript" src="js/tablas.js"></script>
-
+  <script type="text/javascript" src="js/mapa.js"></script>
+ 
 <script type="text/javascript" >
-    $(document).ready(function () 
-	{  
+	$(document).ready(function () 
+	{
         $('#divTerremoto').iFeed({
             FeedUrl: 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.atom',
             MaxCount: 50
         });
+	
     });    
 
 </script>
-  
-  
+ <script type="text/javascript">
+    var map;
+    $(document).ready(function(){
+      map = new GMaps({
+        el: '#map',
+        lat: 40.736043,
+        lng: -74.002686
+      });
+    });
+  </script>
 </head>
 <body>
     <nav class="top-bar">
@@ -99,9 +111,50 @@
 					</div>
 				</div>
 		</div>
+		
 	</div>
 	<div class="row">
-		<div class= "large-12 columns" id="divTerremoto">
+		<div class= "large-12 columns">
+			<!--<a href="#" data-dropdown="drop2" onclick="saludador();">Has Content Dropdown</a>-->
+			<ul id="drop2" class="f-dropdown large" data-dropdown-content>	
+				<div id="map"></div>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class= "large-8 columns" id="divTerremoto">
+		</div>
+		<div class = "large-4 columns">
+			<table>
+			  <thead>
+				<tr>
+				  <th width="200">Indicador de magnitud</th>
+				  <th>Color</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr>
+				  <td>Mayor que 2 y menor que 3</td>
+				  <td bgcolor="#2EFE2E"></td>
+				</tr>
+				<tr>
+				  <td>Mayor que 3 y menor que 4</td>
+				  <td bgcolor="#C8FE2E"></td>
+				</tr>
+				<tr>
+				  <td>Mayor que 4 y menor que 5</td>
+				  <td bgcolor="#FE9A2E"></td>
+				</tr>
+				<tr>
+				  <td>Mayor que 5 y menor que 6</td>
+				  <td bgcolor="#FF0000"></td>
+				</tr>	
+				<tr>
+				  <td>Mayor que 6 y menor que 7</td>
+				  <td bgcolor="#c91c31"></td>
+				</tr>				
+			  </tbody>
+			</table>			
 		</div>
 	</div>
   <script>
@@ -132,15 +185,4 @@
     $(document).foundation();
   </script>
 </body>
-<div id="myModal" class="reveal-modal">
-  <h2>Tecnologías</h2>
-  <p class="lead">Las tecnologías que he utilizado para desarrollar el proyecto:</p>
-	<ul class="disc">
-		<li><a href="http://foundation.zurb.com/">Foundation Framework</a><br />Utilizado para montar la web.
-		</li>
-		
-		<li><a href="http://www.jquery-plugins.net/FeedEK/FeedEK.html">FeedEk jQuery RSS/ATOM Feed Plugin</a><br />Utilizado para la lectura del XML en red y construir parte del html desde javascript.</li>
-	</ul>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
 </html>

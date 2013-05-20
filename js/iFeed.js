@@ -45,13 +45,6 @@ var terremotos = new Array();
 													tempTitulo = t.title.substr(t.title.indexOf(",")+1);
 													tempZona= t.title.substr(t.title.indexOf("-")+2, t.title.lastIndexOf(",")-8);
 												}
-												
-												
-												
-												s += 
-												//Relleno la tabla por campos en cada 'Entry'
-												//País
-												"<tr><td>"+  tempTitulo + "</td>";
 
 												if (n.ShowPubDate) 
 												{ 
@@ -64,21 +57,6 @@ var terremotos = new Array();
 													temp_h = temp_h.substr(temp_h.length-12,temp_h.length);
 													
 													i = new Date(t.publishedDate);
-													s += 
-													
-													//Hora
-													"<td>" + temp_h + "</td>"
-													
-													//Día
-													+ "<td>" + i.toLocaleDateString() + "</td>"
-													
-													//Magnitud
-													+ temp_mg + "<td>"
-													//Zona
-													+ tempZona +"</td>"
-													
-													
-													
 													if (t.content.substr(0,3)=="<p>")
 													{
 														var tempCoord;
@@ -95,28 +73,11 @@ var terremotos = new Array();
 														{
 														tempUrl = t.link;
 														}
-														
-																												
-														s += 
-														
-														//Coordenadas
-														"<td>"+ temp_string.substring(0,temp_string.indexOf("</dd>")) + "</td>" +
-														
-														//¿Lo has sentido?
-														"<td><a href="+ tempUrl +"   </a>Informa</td>"												
+											
 													}
 													else
 													{
 														var temp_string = t.content.substring(t.content.indexOf("Location")+17);
-														s += 
-														
-														//Coordenadas
-														"<td>"+ temp_string.substring(0,temp_string.indexOf("</dd>")) + "</td>" +
-														
-														//¿Lo has sentido?
-														"<td><a href="+t.link +"   </a>Informa</td></tr>"
-														
-														tempUrl = t.link;
 													}
 													
 												} 
@@ -134,6 +95,7 @@ var terremotos = new Array();
 											
 								
 											);
+											//Al finalizar la creación de objetos de tipo terremoto creo la tabla.
 											createTable();
 											
 										} 

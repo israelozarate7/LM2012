@@ -2,19 +2,6 @@
 * Autor : Israel Ortiz de Zárate 
 */
 
-//Función que crea la tabla a partir de los datos del DropDown.
-function crearTabla()
-{
-var num = document.getElementById("customDropdown1").value;
-    $(document).ready(function () 
-	{  
-        $('#divTerremoto').iFeed({
-            FeedUrl: 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.atom',
-            MaxCount: num
-        });
-    });
-}
-
 //Función que elimina la tabla entera.
 function deleteAllRows() {
 	var Parent = document.getElementById("terremotoTable");
@@ -30,8 +17,11 @@ function createTable() {
 	var i = 0;
 	var statusMG5 = false;
 	var statusMG4 = false;
+	var statusNewAnt = true;
 	var registrosBOL = false;
 	
+	//Obtengo los valores del los diferentes radios
+	statusNewAnt = document.getElementById("radio_asc").checked;
 	statusMG5 = document.getElementById("radio_mg5").checked;
 	statusMG4 = document.getElementById("radio_mg4").checked;
 	
@@ -41,100 +31,152 @@ function createTable() {
 	
 	//Obtengo el valor del DropDown.
 	var num = document.getElementById("customDropdown1").value;
-	
-	if (statusMG5 == false && statusMG4 == false)
+	//Compruebo el orden (nuevo a mas antiguo o antiguo a mas nuevo)
+	if (statusNewAnt == false)
 	{
-		//'Sin filtro'
-		for (i;i<num;i++)
+		if (statusMG5 == false && statusMG4 == false)
+		{
+			//'Sin filtro'
+			for (i;i<num;i++)
+			{
+				
+				registrosBOL = true;
+				registros += "<tr>"
+				registros += "<td>" + terremotos[num - i-1].pais + "</td>";
+				registros += "<td>" + terremotos[num - i-1].hora + "</td>";
+				registros += "<td>" + terremotos[num - i-1].fecha + "</td>";
+				
+				if (terremotos[num - i-1].magnitud < 3)
+				{
+					registros += "<td bgcolor=\"#2EFE2E\">" + terremotos[num - i-1].magnitud + "</td>";
+				}
+				else if (terremotos[num - i-1].magnitud < 4)
+				{
+					registros += "<td bgcolor=\"#C8FE2E\">" + terremotos[num - i-1].magnitud + "</td>";
+				}
+				else if (terremotos[num - i-1].magnitud < 5)
+				{
+					registros += "<td bgcolor=\"#FE9A2E\">" + terremotos[num - i-1].magnitud + "</td>";
+				}
+				else if (terremotos[num - i-1].magnitud < 6)
+				{
+					registros += "<td bgcolor=\"#FF0000\">" + terremotos[num - i-1].magnitud + "</td>";
+				}
+				else if (terremotos[num - i-1].magnitud < 7)
+				{
+					registros += "<td bgcolor=\"#c91c31\">" + terremotos[num - i-1].magnitud + "</td>";
+				}			
+				else
+				{
+					registros += "<td>" + terremotos[num - i-1].magnitud + "</td>";
+				}
+				
+				registros += "<td>" + terremotos[num - i-1].zona + "</td>";
+				registros += "<td>" + terremotos[num - i-1].coordenadas + "</td>";
+				registros += "<td><a href=" + terremotos[num - i-1].url + "   </a>Informa</td>";
+				registros += "</tr>"
+			}	
+		}
+		else
 		{
 			
-			registrosBOL = true;
-			registros += "<tr>"
-			registros += "<td>" + terremotos[i].pais + "</td>";
-			registros += "<td>" + terremotos[i].hora + "</td>";
-			registros += "<td>" + terremotos[i].fecha + "</td>";
-			
-			if (terremotos[i].magnitud < 3)
+			//Filtro magnitud superior a 5
+			if (statusMG5 == true)
 			{
-				registros += "<td bgcolor=\"#2EFE2E\">" + terremotos[i].magnitud + "</td>";
+				for (i;i<num;i++)
+				{
+					
+					if (terremotos[num - i-1].magnitud > 5)
+					{
+						registrosBOL = true;
+						registros += "<tr>"
+						registros += "<td>" + terremotos[num - i-1].pais + "</td>";
+						registros += "<td>" + terremotos[num - i-1].hora + "</td>";
+						registros += "<td>" + terremotos[num - i-1].fecha + "</td>";
+						
+						if (terremotos[num - i-1].magnitud < 6)
+						{
+							registros += "<td bgcolor=\"#FF0000\">" + terremotos[num - i-1].magnitud + "</td>";
+						}
+						else
+						{
+						registros += "<td bgcolor=\"#c91c31\">" + terremotos[num - i-1].magnitud + "</td>";
+						}			
+				
+					
+						registros += "<td>" + terremotos[num - i-1].zona + "</td>";
+						registros += "<td>" + terremotos[num - i-1].coordenadas + "</td>";
+						registros += "<td><a href=" + terremotos[num - i-1].url + "   </a>Informa</td>";
+						registros += "</tr>"			
+					}
+
+				}		
 			}
-			else if (terremotos[i].magnitud < 4)
-			{
-				registros += "<td bgcolor=\"#C8FE2E\">" + terremotos[i].magnitud + "</td>";
-			}
-			else if (terremotos[i].magnitud < 5)
-			{
-				registros += "<td bgcolor=\"#FE9A2E\">" + terremotos[i].magnitud + "</td>";
-			}
-			else if (terremotos[i].magnitud < 6)
-			{
-				registros += "<td bgcolor=\"#FF0000\">" + terremotos[i].magnitud + "</td>";
-			}
-			else if (terremotos[i].magnitud < 7)
-			{
-				registros += "<td bgcolor=\"#c91c31\">" + terremotos[i].magnitud + "</td>";
-			}			
 			else
 			{
-				registros += "<td>" + terremotos[i].magnitud + "</td>";
+			//Filtro magnitud superior a 4
+				for (i;i<num;i++)
+				{
+					
+					if (terremotos[num - i-1].magnitud > 4)
+					{
+						registrosBOL = true;
+						registros += "<tr>"
+						registros += "<td>" + terremotos[num - i-1].pais + "</td>";
+						registros += "<td>" + terremotos[num - i-1].hora + "</td>";
+						registros += "<td>" + terremotos[num - i-1].fecha + "</td>";
+						
+						if (terremotos[num - i-1].magnitud < 5)
+						{
+							registros += "<td bgcolor=\"#FE9A2E\">" + terremotos[num - i-1].magnitud + "</td>";
+						}
+						else if (terremotos[num - i-1].magnitud < 6)
+						{
+							registros += "<td bgcolor=\"#FF0000\">" + terremotos[num - i-1].magnitud + "</td>";
+						}
+						else
+						{
+						registros += "<td bgcolor=\"#c91c31\">" + terremotos[num - i-1].magnitud + "</td>";
+						}			
+				
+					
+						registros += "<td>" + terremotos[num - i-1].zona + "</td>";
+						registros += "<td>" + terremotos[num - i-1].coordenadas + "</td>";
+						registros += "<td><a href=" + terremotos[num - i-1].url + "   </a>Informa</td>";
+						registros += "</tr>"			
+					}
+
+				}
 			}
 			
-			registros += "<td>" + terremotos[i].zona + "</td>";
-			registros += "<td>" + terremotos[i].coordenadas + "</td>";
-			registros += "<td><a href=" + terremotos[i].url + "   </a>Informa</td>";
-			registros += "</tr>"
+			
+		
+		
 		}	
 	}
 	else
 	{
-		
-		//Filtro magnitud superior a 5
-		if (statusMG5 == true)
+		if (statusMG5 == false && statusMG4 == false)
 		{
-		for (i;i<num;i++)
-		{
-			
-			if (terremotos[i].magnitud > 5)
+			//'Sin filtro'
+			for (i;i<num;i++)
 			{
+				
 				registrosBOL = true;
 				registros += "<tr>"
 				registros += "<td>" + terremotos[i].pais + "</td>";
 				registros += "<td>" + terremotos[i].hora + "</td>";
 				registros += "<td>" + terremotos[i].fecha + "</td>";
 				
-				if (terremotos[i].magnitud < 6)
+				if (terremotos[i].magnitud < 3)
 				{
-					registros += "<td bgcolor=\"#FF0000\">" + terremotos[i].magnitud + "</td>";
+					registros += "<td bgcolor=\"#2EFE2E\">" + terremotos[i].magnitud + "</td>";
 				}
-				else
+				else if (terremotos[i].magnitud < 4)
 				{
-				registros += "<td bgcolor=\"#c91c31\">" + terremotos[i].magnitud + "</td>";
-				}			
-		
-			
-				registros += "<td>" + terremotos[i].zona + "</td>";
-				registros += "<td>" + terremotos[i].coordenadas + "</td>";
-				registros += "<td><a href=" + terremotos[i].url + "   </a>Informa</td>";
-				registros += "</tr>"			
-			}
-
-		}		
-		}
-		else
-		{
-		//Filtro magnitud superior a 4
-		for (i;i<num;i++)
-		{
-			
-			if (terremotos[i].magnitud > 4)
-			{
-				registrosBOL = true;
-				registros += "<tr>"
-				registros += "<td>" + terremotos[i].pais + "</td>";
-				registros += "<td>" + terremotos[i].hora + "</td>";
-				registros += "<td>" + terremotos[i].fecha + "</td>";
-				
-				if (terremotos[i].magnitud < 5)
+					registros += "<td bgcolor=\"#C8FE2E\">" + terremotos[i].magnitud + "</td>";
+				}
+				else if (terremotos[i].magnitud < 5)
 				{
 					registros += "<td bgcolor=\"#FE9A2E\">" + terremotos[i].magnitud + "</td>";
 				}
@@ -142,26 +184,100 @@ function createTable() {
 				{
 					registros += "<td bgcolor=\"#FF0000\">" + terremotos[i].magnitud + "</td>";
 				}
+				else if (terremotos[i].magnitud < 7)
+				{
+					registros += "<td bgcolor=\"#c91c31\">" + terremotos[i].magnitud + "</td>";
+				}			
 				else
 				{
-				registros += "<td bgcolor=\"#c91c31\">" + terremotos[i].magnitud + "</td>";
-				}			
-		
-			
+					registros += "<td>" + terremotos[i].magnitud + "</td>";
+				}
+				
 				registros += "<td>" + terremotos[i].zona + "</td>";
 				registros += "<td>" + terremotos[i].coordenadas + "</td>";
 				registros += "<td><a href=" + terremotos[i].url + "   </a>Informa</td>";
-				registros += "</tr>"			
-			}
+				registros += "</tr>"
+			}	
+		}
+		else
+		{
+			
+			//Filtro magnitud superior a 5
+			if (statusMG5 == true)
+			{
+				for (i;i<num;i++)
+				{
+					
+					if (terremotos[i].magnitud > 5)
+					{
+						registrosBOL = true;
+						registros += "<tr>"
+						registros += "<td>" + terremotos[i].pais + "</td>";
+						registros += "<td>" + terremotos[i].hora + "</td>";
+						registros += "<td>" + terremotos[i].fecha + "</td>";
+						
+						if (terremotos[i].magnitud < 6)
+						{
+							registros += "<td bgcolor=\"#FF0000\">" + terremotos[i].magnitud + "</td>";
+						}
+						else
+						{
+						registros += "<td bgcolor=\"#c91c31\">" + terremotos[i].magnitud + "</td>";
+						}			
+				
+					
+						registros += "<td>" + terremotos[i].zona + "</td>";
+						registros += "<td>" + terremotos[i].coordenadas + "</td>";
+						registros += "<td><a href=" + terremotos[i].url + "   </a>Informa</td>";
+						registros += "</tr>"			
+					}
 
-		}
-		}
+				}		
+			}
+			else
+			{
+			//Filtro magnitud superior a 4
+				for (i;i<num;i++)
+				{
+					
+					if (terremotos[i].magnitud > 4)
+					{
+						registrosBOL = true;
+						registros += "<tr>"
+						registros += "<td>" + terremotos[i].pais + "</td>";
+						registros += "<td>" + terremotos[i].hora + "</td>";
+						registros += "<td>" + terremotos[i].fecha + "</td>";
+						
+						if (terremotos[i].magnitud < 5)
+						{
+							registros += "<td bgcolor=\"#FE9A2E\">" + terremotos[i].magnitud + "</td>";
+						}
+						else if (terremotos[i].magnitud < 6)
+						{
+							registros += "<td bgcolor=\"#FF0000\">" + terremotos[i].magnitud + "</td>";
+						}
+						else
+						{
+						registros += "<td bgcolor=\"#c91c31\">" + terremotos[i].magnitud + "</td>";
+						}			
+				
+					
+						registros += "<td>" + terremotos[i].zona + "</td>";
+						registros += "<td>" + terremotos[i].coordenadas + "</td>";
+						registros += "<td><a href=" + terremotos[i].url + "   </a>Informa</td>";
+						registros += "</tr>"			
+					}
+
+				}
+			}
+			
+			
 		
 		
-	
-	
+		}	
 	}
-	
+
+	//Añado al index.html el html que corresponde a la tabla con los datos de los objetos de tipo terremoto.
 	var contenedor = document.getElementById('divTerremoto'); 
 	contenedor.innerHTML = cabecera + registros + "</tbody></table>";
 

@@ -106,7 +106,7 @@ function createTable() {
 						registros += "<td>" + terremotos[num - i-1].zona + "</td>";
 						registros += "<td><a href=" + terremotos[num - i-1].url + "   </a>Informa</td>";
 						registros+=
-						"<td><a href=\"#\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[num - i-1].coordenadas +"');\">"+ terremotos[num - i-1].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";					
+						"<td><a href=\"\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[num - i-1].coordenadas +"');\">"+ terremotos[num - i-1].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";					
 						
 						registros += "</tr>"			
 					}
@@ -144,7 +144,7 @@ function createTable() {
 						registros += "<td>" + terremotos[num - i-1].zona + "</td>";	
 						registros += "<td><a href=" + terremotos[num - i-1].url + "   </a>Informa</td>";
 						registros+=
-						"<td><a href=\"#\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[num - i-1].coordenadas +"');\">"+ terremotos[num - i-1].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";						
+						"<td><a href=\"\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[num - i-1].coordenadas +"');\">"+ terremotos[num - i-1].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";						
 						registros += "</tr>"			
 					}
 
@@ -198,7 +198,7 @@ function createTable() {
 				registros += "<td>" + terremotos[i].zona + "</td>";
 				registros += "<td><a href=" + terremotos[i].url + "   </a>Informa</td>";
 				registros+=
-				"<td><a href=\"#\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[i].coordenadas +"');\">"+ terremotos[i].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";			
+				"<td><a href=\"\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[i].coordenadas +"');\">"+ terremotos[i].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";			
 				registros += "</tr>"
 			}	
 		}
@@ -232,7 +232,7 @@ function createTable() {
 						registros += "<td>" + terremotos[i].zona + "</td>";	
 						registros += "<td><a href=" + terremotos[i].url + "   </a>Informa</td>";
 						registros+=
-						"<td><a href=\"#\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[i].coordenadas +"');\">"+ terremotos[i].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";						
+						"<td><a href=\"\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[i].coordenadas +"');\">"+ terremotos[i].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";						
 						registros += "</tr>"			
 					}
 
@@ -269,7 +269,7 @@ function createTable() {
 						registros += "<td>" + terremotos[i].zona + "</td>";
 						registros += "<td><a href=" + terremotos[i].url + "   </a>Informa</td>";
 						registros+=
-						"<td><a href=\"#\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[i].coordenadas +"');\">"+ terremotos[i].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";							
+						"<td><a href=\"\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[i].coordenadas +"');\">"+ terremotos[i].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";							
 						registros += "</tr>"			
 					}
 

@@ -26,7 +26,7 @@ function createTable() {
 	statusMG4 = document.getElementById("radio_mg4").checked;
 	
 	//Cabecera de la tabla a introducir.
-	var cabecera = "<table id=\"terremotoTable\"><thead><tr><th>País</th><th>Hora</th><th>Día</th><th>Magnitud</th><th>Zona</th><th>Coordenadas</th><th>¿Lo has sentido?</th></thead><tbody>"
+	var cabecera = "<table id=\"terremotoTable\"><thead><tr><th>País</th><th>Hora</th><th>Día</th><th>Magnitud</th><th>Zona</th><th>¿Lo has sentido?</th><th>Coordenadas</th></thead><tbody>"
 	var registros=""; 
 	
 	//Obtengo el valor del DropDown.
@@ -73,9 +73,9 @@ function createTable() {
 				}
 				
 				registros += "<td>" + terremotos[num - i-1].zona + "</td>";
-				registros += "<td>" + terremotos[num - i-1].coordenadas + "</td>";
 				registros += "<td><a href=" + terremotos[num - i-1].url + "   </a>Informa</td>";
-				registros += "</tr>"
+				registros+=
+				"<td><a href=\"#\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[num - i-1].coordenadas +"');\">"+ terremotos[num - i-1].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";	registros += "</tr>"
 			}	
 		}
 		else
@@ -102,12 +102,12 @@ function createTable() {
 						else
 						{
 						registros += "<td bgcolor=\"#c91c31\">" + terremotos[num - i-1].magnitud + "</td>";
-						}			
-				
-					
+						}						
 						registros += "<td>" + terremotos[num - i-1].zona + "</td>";
-						registros += "<td>" + terremotos[num - i-1].coordenadas + "</td>";
 						registros += "<td><a href=" + terremotos[num - i-1].url + "   </a>Informa</td>";
+						registros+=
+						"<td><a href=\"#\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[num - i-1].coordenadas +"');\">"+ terremotos[num - i-1].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";					
+						
 						registros += "</tr>"			
 					}
 
@@ -141,9 +141,10 @@ function createTable() {
 						}			
 				
 					
-						registros += "<td>" + terremotos[num - i-1].zona + "</td>";
-						registros += "<td>" + terremotos[num - i-1].coordenadas + "</td>";
+						registros += "<td>" + terremotos[num - i-1].zona + "</td>";	
 						registros += "<td><a href=" + terremotos[num - i-1].url + "   </a>Informa</td>";
+						registros+=
+						"<td><a href=\"#\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[num - i-1].coordenadas +"');\">"+ terremotos[num - i-1].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";						
 						registros += "</tr>"			
 					}
 
@@ -195,8 +196,9 @@ function createTable() {
 				}
 				
 				registros += "<td>" + terremotos[i].zona + "</td>";
-				registros += "<td>" + terremotos[i].coordenadas + "</td>";
 				registros += "<td><a href=" + terremotos[i].url + "   </a>Informa</td>";
+				registros+=
+				"<td><a href=\"#\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[i].coordenadas +"');\">"+ terremotos[i].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";			
 				registros += "</tr>"
 			}	
 		}
@@ -227,9 +229,10 @@ function createTable() {
 						}			
 				
 					
-						registros += "<td>" + terremotos[i].zona + "</td>";
-						registros += "<td>" + terremotos[i].coordenadas + "</td>";
+						registros += "<td>" + terremotos[i].zona + "</td>";	
 						registros += "<td><a href=" + terremotos[i].url + "   </a>Informa</td>";
+						registros+=
+						"<td><a href=\"#\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[i].coordenadas +"');\">"+ terremotos[i].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";						
 						registros += "</tr>"			
 					}
 
@@ -264,8 +267,9 @@ function createTable() {
 				
 					
 						registros += "<td>" + terremotos[i].zona + "</td>";
-						registros += "<td>" + terremotos[i].coordenadas + "</td>";
 						registros += "<td><a href=" + terremotos[i].url + "   </a>Informa</td>";
+						registros+=
+						"<td><a href=\"#\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[i].coordenadas +"');\">"+ terremotos[i].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";							
 						registros += "</tr>"			
 					}
 
@@ -288,4 +292,5 @@ function createTable() {
 	}
 
 }
+
 

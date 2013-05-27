@@ -87,7 +87,7 @@ var terremotos = new Array();
 												} 
 											
 											
-											    alert (tempUrl);
+
 												//Cada vez que finaliza la obtención de datos por terremoto, creo el objeto de tipo 'terremoto'
 												var fecha = i.toLocaleDateString();
 												var w = new terremoto(tempTitulo, temp_h, fecha, mg, tempZona, temp_string.substring(0,temp_string.indexOf("</dd>")), tempUrl);

@@ -196,6 +196,7 @@ function createTable() {
 				}
 				
 				registros += "<td>" + terremotos[i].zona + "</td>";
+				
 				registros += "<td><a href=" + terremotos[i].url + "   </a>Informa</td>";
 				registros+=
 				"<td><a href=\"\" data-dropdown=\"drop2\" onclick=\"generarMapa('"+ terremotos[i].coordenadas +"');\">"+ terremotos[i].coordenadas +"</a><ul id=\"drop2\" class=\"f-dropdown large\"data-dropdown-content><div id=\"map\"></div></ul></td>";			

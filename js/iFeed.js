@@ -65,9 +65,12 @@ var terremotos = new Array();
 														var posDYFI= t.content.indexOf("#dyfi\"");
 														
 														
+														
 														if (posDYFI < 100)
 														{
-														tempUrl = t.content.substr(t.content.indexOf("\"http")+1,t.content.indexOf("#dyfi\"")-7);
+
+														    tempUrl = t.content.substr(t.content.indexOf("\"http")+1,t.content.indexOf("#dyfi\"")-7);
+
 														}
 														else
 														{
@@ -77,11 +80,14 @@ var terremotos = new Array();
 													}
 													else
 													{
+													    tempUrl = t.link;
 														var temp_string = t.content.substring(t.content.indexOf("Location")+17);
 													}
 													
 												} 
 											
+											
+											    alert (tempUrl);
 												//Cada vez que finaliza la obtención de datos por terremoto, creo el objeto de tipo 'terremoto'
 												var fecha = i.toLocaleDateString();
 												var w = new terremoto(tempTitulo, temp_h, fecha, mg, tempZona, temp_string.substring(0,temp_string.indexOf("</dd>")), tempUrl);
